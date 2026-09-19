@@ -34,9 +34,13 @@ Active Directory security testing lab.
 
 - [x] Create dedicated WINLAB VLAN
 - [x] Configure network segmentation policy
-- [x] Configure Proxmox network (bridge active; VM connectivity testing pending)
-- [ ] Deploy initial Windows Server VM
-- [ ] Validate network isolation
+- [x] Configure Proxmox network
+- [x] Deploy initial Windows Server VM (DC01; AD DS promotion pending)
+- [x] Verify blocked test traffic to PLAN, DMZ, Default and LAN
+- [x] Verify gateway, external DNS, outbound TCP 443 and inbound RDP access
+- [x] Verify a new connection from DC01 to the administration workstation is blocked
+- [ ] Verify clean-install snapshot and restore
+- [ ] Complete VM templates and VLAN break/fix exercise
 - [ ] Complete architecture documentation
 
 ## Documentation
