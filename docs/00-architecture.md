@@ -87,18 +87,48 @@ addressing.
 
 ## Proxmox Network Design
 
-> **Status: In progress**
+> **Status: Configured and active; VM connectivity testing pending**
 
-WINLAB will be presented to the virtual machines through a dedicated
-Proxmox bridge.
+WINLAB now has a dedicated Linux bridge, `vmbr20`, connected to the
+VLAN interface `enp90s0.20`. The VLAN interface carries VLAN 20 traffic
+through the existing physical uplink, `enp90s0`.
 
-[Architecture diagram to be added]
+| Component | Applied configuration |
+|---|---|
+| Lab bridge | `vmbr20` |
+| Bridge port | `enp90s0.20` |
+| Physical uplink | `enp90s0` |
+| VLAN | `20` |
+| Autostart | Enabled on the VLAN interface and lab bridge |
+| VLAN awareness on lab bridge | Disabled; tagging is handled by the VLAN interface |
+| Host IP and gateway on lab bridge | None configured |
+
+The dedicated bridge gives lab VMs a clear attachment point. It does not
+need a Proxmox host IP address to forward VM traffic. The existing `vmbr0`
+continues to use `enp90s0`; `vmbr1` continues to use `enp88s0`.
+
+### Applied Configuration Evidence
+
+![Proxmox WINLAB VLAN interface and bridge](../images/winlab-proxmox-network.png)
+
+The configuration screenshot reviewed during setup shows `enp90s0.20` and
+`vmbr20` active with autostart enabled,
+and `vmbr20` connected to `enp90s0.20`. Existing management addresses are
+redacted. This verifies the applied host configuration, not end-to-end
+connectivity or firewall isolation.
+
+### VM Attachment and Remaining Verification
+
+DC01 is not yet deployed. Its planned network adapter will use `vmbr20`
+with the VM VLAN Tag left blank, because the underlying VLAN interface
+handles tagging. The switch path must carry tagged VLAN 20 traffic;
+that path remains to be verified from a lab VM.
 
 ## Validation
 
 > **Status: Pending VM deployment**
 
-Once the Proxmox networking and first WINLAB VM are available, the
+Once the first WINLAB VM is available, the
 following tests will be performed:
 
 | Test | Expected Result | Result |
