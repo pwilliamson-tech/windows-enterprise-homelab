@@ -1,0 +1,40 @@
+# Internal planning material must remain outside the public portfolio.
+AZ802-COVERAGE.md
+AZ802-Master-Tracker.xlsx
+GITHUB-STRUCTURE.md
+HOMELAB-ARCHITECTURE.md
+INCIDENT-TEMPLATE.md
+MASTER-ROADMAP.md
+README-TEMPLATE.md
+
+# Local credentials and private key material.
+.env
+.env.*
+!.env.example
+credentials/
+secrets/
+*.pfx
+*.p12
+*.pem
+*.key
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Installation media, virtual disks, and VM backups.
+*.iso
+*.vhd
+*.vhdx
+*.vmdk
+*.qcow2
+*.vma
+*.vma.zst
+*.vma.lzo
+
+# Local operating-system and editor files.
+Thumbs.db
+Desktop.ini
+.DS_Store
+~$*
+*.tmp
+*.swp
